@@ -55,7 +55,6 @@ ShopWise is an eco-friendly personalized shopping platform that helps users disc
 ├── login.html          # Login page
 ├── register.html       # Registration page
 ├── questionnaire.html  # Style questionnaire page
-└── README.md           # Project documentation
 ```
 
 ## Contributing 🤝
