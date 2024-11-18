@@ -1,0 +1,267 @@
+/*-----------------------------------*\
+  # VARIABLES CSS
+\*-----------------------------------*/
+
+:root {
+  --spanish-gray: hsl(0, 0%, 60%);
+  --sonic-silver: hsl(0, 0%, 47%);
+  --eerie-black: hsl(0, 0%, 13%);
+  --salmon-pink: hsl(353, 100%, 78%);
+  --sandy-brown: hsl(29, 90%, 65%);
+  --bittersweet: hsl(0, 100%, 70%);
+  --cultured: hsl(0, 0%, 93%);
+  --white: hsl(0, 100%, 100%);
+  --onyx: hsl(0, 0%, 27%);
+
+  --fs-1: 1.563rem;
+  --fs-2: 1.375rem;
+  --fs-3: 1.25rem;
+  --fs-4: 1.125rem;
+  --fs-5: 1rem;
+
+  --border-radius-md: 10px;
+  --border-radius-sm: 5px;
+  --transition-timing: 0.2s ease;
+}
+
+/*-----------------------------------*\
+  # RESET CSS
+\*-----------------------------------*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--white);
+  color: var(--eerie-black);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input {
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--cultured);
+  border-radius: var(--border-radius-sm);
+}
+
+input::placeholder {
+  color: var(--sonic-silver);
+}
+
+/*-----------------------------------*\
+  # CONTAINERS & LAYOUT
+\*-----------------------------------*/
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header,
+.footer {
+  text-align: center;
+  padding: 20px;
+}
+
+.header h1 {
+  font-size: var(--fs-1);
+  color: var(--eerie-black);
+}
+
+.footer p {
+  font-size: var(--fs-5);
+  color: var(--sonic-silver);
+}
+
+/*-----------------------------------*\
+  # SEARCH BAR
+\*-----------------------------------*/
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.search-box input {
+  width: 80%;
+  padding: 10px;
+  font-size: var(--fs-5);
+  border: 1px solid var(--cultured);
+  border-radius: var(--border-radius-md);
+}
+
+.search-box button {
+  padding: 10px 20px;
+  background-color: var(--salmon-pink);
+  color: var(--white);
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  transition: background-color var(--transition-timing);
+}
+
+.search-box button:hover {
+  background-color: var(--onyx);
+}
+
+/*-----------------------------------*\
+  # FORMS
+\*-----------------------------------*/
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form label {
+  font-size: var(--fs-4);
+  color: var(--eerie-black);
+}
+
+form button {
+  padding: 10px;
+  background-color: var(--salmon-pink);
+  color: var(--white);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  transition: background-color var(--transition-timing);
+}
+
+form button:hover {
+  background-color: var(--onyx);
+}
+
+/*-----------------------------------*\
+  # MODALS
+\*-----------------------------------*/
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s;
+}
+
+.modal.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  background: var(--white);
+  padding: 20px;
+  border-radius: var(--border-radius-md);
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: var(--bittersweet);
+  color: var(--white);
+  padding: 5px;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--fs-3);
+}
+
+.modal-close-btn:hover {
+  background-color: var(--onyx);
+}
+
+/*-----------------------------------*\
+  # STORE LIST & RESULTS
+\*-----------------------------------*/
+
+#storeList {
+  margin-top: 20px;
+}
+
+.stores {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.store {
+  background: var(--cultured);
+  border: 1px solid var(--spanish-gray);
+  padding: 15px;
+  border-radius: var(--border-radius-md);
+  text-align: center;
+}
+
+.store h3 {
+  color: var(--eerie-black);
+  font-size: var(--fs-4);
+  margin-bottom: 5px;
+}
+
+.store p {
+  font-size: var(--fs-5);
+  color: var(--sonic-silver);
+}
+
+/*-----------------------------------*\
+  # FOOTER
+\*-----------------------------------*/
+
+footer {
+  background-color: var(--eerie-black);
+  color: var(--white);
+  padding: 20px;
+}
+
+footer p {
+  font-size: var(--fs-5);
+}
+
+.result-message {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  margin-top: 30px;
+  text-align: center;
+  max-width: 500px; /* même largeur que la liste des magasins */
+  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: none; /* Masqué par défaut, affiché lors de la recherche */
+}

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopWise - Recherche de Magasins</title>
+  <style>
+  /* VARIABLES CSS */
+  :root {
+  --primary-color: #3a7ca5; /* Bleu vif pour un accent attrayant */
+  --accent-color: #e85d04; /* Orange chaud pour contraster */
+  --text-color: #2d2d2d; /* Gris foncé pour une bonne lisibilité */
+  --input-bg-color: #f9f9f9; /* Blanc cassé pour le fond des champs */
+  --shadow-color: rgba(0, 0, 0, 0.15); /* Ombrage légèrement plus prononcé */
+  --font-family: "Poppins", sans-serif;
+  }
+
+    /* RESET */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* BODY STYLING AVEC IMAGE D'ARRIÈRE-PLAN */
+    body {
+      font-family: var(--font-family);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      background-image: url('assets/images/fond2.png'); /* Chemin de l'image */
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    /* CONTAINER PRINCIPAL CENTRÉ */
+    .main-container {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9); /* Fond semi-transparent pour lisibilité */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px var(--shadow-color);
+    }
+
+    /* TITRE ET INTRODUCTION */
+    h1 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    /* BARRE DE RECHERCHE */
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 12px 20px;
+      border-radius: 30px;
+      background-color: var(--input-bg-color);
+      box-shadow: 0px 4px 10px var(--shadow-color);
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 1rem;
+      background: none;
+      color: var(--text-color);
+    }
+
+    .search-box button {
+      background-color: var(--primary-color);
+      border: none;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      color: #fff;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-box button:hover {
+      background-color: var(--accent-color);
+    }
+
+    /* LIENS DE CONNEXION ET INSCRIPTION */
+    .auth-links {
+      margin-top: 15px;
+      font-size: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .auth-links a {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .auth-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* MESSAGE DE CHARGEMENT */
+    .loading-message {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      display: none;
+    }
+
+    /* CONTAINER DES RESULTATS */
+    .result-container {
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    /* MESSAGE PERSONNALISÉ */
+    .result-message {
+      font-size: 1.1rem;
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    /* LISTE DES MAGASINS */
+    .store-list {
+      width: 100%;
+    }
+
+    .store-item {
+      background-color: var(--input-bg-color);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      box-shadow: 0px 4px 10px var(--shadow-color);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .store-info {
+      flex: 1;
+    }
+
+    .store-item h3 {
+      font-size: 1.1rem;
+      color: var(--primary-color);
+      margin-bottom: 5px;
+    }
+
+    .store-item p {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      margin-bottom: 3px;
+    }
+
+    /* IMAGE DU MAGASIN */
+    .store-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <h1>Bienvenue sur ShopWise</h1>
+    <p>Découvrez les meilleurs magasins près de chez vous, en fonction de vos goûts et de votre budget.</p>
+
+    <!-- BARRE DE RECHERCHE -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Entrez un article...">
+      <button id="searchButton">🔍</button>
+    </div>
+
+    <!-- LIENS DE CONNEXION ET INSCRIPTION -->
+    <div class="auth-links">
+      <a href="login.html">Connexion</a>
+      |
+      <a href="register.html">Inscription</a>
+    </div>
+
+    <!-- MESSAGE DE CHARGEMENT -->
+    <div id="loadingMessage" class="loading-message">Patientez, géolocalisation en cours...</div>
+
+    <!-- CONTAINER DES RESULTATS -->
+    <div class="result-container">
+      <!-- MESSAGE PERSONNALISÉ -->
+      <div id="resultMessage" class="result-message"></div>
+
+      <!-- LISTE DES MAGASINS -->
+      <div id="storeList" class="store-list"></div>
+    </div>
+  </div>
+
+  <script>
+    const sampleStores = [
+      { 
+        name: "Boutique Chic", 
+        distance: "500m", 
+        address: "123 Rue de la Mode", 
+        imageUrl: "https://via.placeholder.com/80?text=Boutique+Chic" 
+      },
+      { 
+        name: "Style Urbain", 
+        distance: "1.2km", 
+        address: "456 Avenue des Tendances", 
+        imageUrl: "https://via.placeholder.com/80?text=Style+Urbain" 
+      },
+      { 
+        name: "Décontracté Store", 
+        distance: "2km", 
+        address: "789 Boulevard Casual", 
+        imageUrl: "https://via.placeholder.com/80?text=Décontracté" 
+      }
+    ];
+
+    function showLoadingMessage() {
+      document.getElementById("loadingMessage").style.display = "block";
+    }
+
+    function hideLoadingMessage() {
+      document.getElementById("loadingMessage").style.display = "none";
+    }
+
+    function showResultMessage(searchQuery) {
+      const resultMessage = document.getElementById("resultMessage");
+      resultMessage.textContent = `Voici une sélection de magasins à proximité qui contiennent l'article "${searchQuery}" à votre goût :`;
+      resultMessage.style.display = "block";
+    }
+
+    function displayStores(stores) {
+      const storeList = document.getElementById("storeList");
+      storeList.innerHTML = ""; 
+
+      stores.forEach(store => {
+        const storeItem = document.createElement("div");
+        storeItem.className = "store-item";
+        
+        storeItem.innerHTML = `
+          <div class="store-info">
+            <h3>${store.name}</h3>
+            <p>Distance : ${store.distance}</p>
+            <p>Adresse : ${store.address}</p>
+          </div>
+          <img src="${store.imageUrl}" alt="${store.name}" class="store-image">
+        `;
+        
+        storeList.appendChild(storeItem);
+      });
+    }
+
+    function locateAndSearchStores() {
+      showLoadingMessage();
+
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            hideLoadingMessage();
+            const searchQuery = document.getElementById("searchInput").value;
+
+            if (searchQuery) {
+              showResultMessage(searchQuery);
+              displayStores(sampleStores);
+            } else {
+              alert("Veuillez entrer un article à rechercher.");
+            }
+          },
+          error => {
+            hideLoadingMessage();
+            alert("Erreur lors de la géolocalisation. Veuillez autoriser la géolocalisation.");
+          }
+        );
+      } else {
+        alert("La géolocalisation n'est pas prise en charge par votre navigateur.");
+      }
+    }
+
+    document.getElementById("searchButton").addEventListener("click", locateAndSearchStores);
+  </script>
+</body>
+</html>

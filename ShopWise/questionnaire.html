@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionnaire de Style - ShopWise</title>
+  <style>
+    /* VARIABLES CSS */
+    :root {
+  --primary-color: #3a7ca5; /* Bleu vif moderne */
+  --accent-color: #e85d04; /* Orange chaud pour accentuer */
+  --background-color: #f4f4f9; /* Fond clair doux */
+  --text-color: #2d2d2d; /* Gris foncé pour une bonne lisibilité */
+  --input-bg-color: #ffffff; /* Blanc pur pour les champs */
+  --border-color: #c7c7c7; /* Gris clair pour les bordures */
+  --shadow-color: rgba(0, 0, 0, 0.15); /* Ombrage subtil */
+  --font-family: "Poppins", sans-serif;
+  }
+
+
+    /* RESET */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--background-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      margin: 0;
+    }
+
+    /* CONTAINER DU QUESTIONNAIRE */
+    .questionnaire-container {
+      background-color: var(--input-bg-color);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0px 8px 16px var(--shadow-color);
+      width: 100%;
+      max-width: 600px;
+      text-align: left;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: var(--text-color);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    /* FORMULAIRE */
+    .questionnaire-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .questionnaire-form label {
+      font-size: 1rem;
+      color: var(--text-color);
+      margin-bottom: 8px;
+    }
+
+    .questionnaire-form input[type="text"],
+    .questionnaire-form input[type="number"],
+    .questionnaire-form textarea {
+      padding: 12px;
+      font-size: 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: var(--input-bg-color);
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .questionnaire-form input:focus,
+    .questionnaire-form textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0px 4px 8px rgba(95, 158, 160, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .questionnaire-form button {
+      padding: 12px;
+      background-color: var(--primary-color);
+      color: var(--input-bg-color);
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .questionnaire-form button:hover {
+      background-color: var(--accent-color);
+    }
+
+    /* ANIMATION */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="questionnaire-container">
+    <h2>Questionnaire de Style</h2>
+    <p>Aidez-nous à découvrir votre style unique pour vous offrir des recommandations personnalisées.</p>
+    
+    <form id="questionnaireForm" class="questionnaire-form">
+      <!-- Nouvelle Question : Description du style -->
+      <label for="styleDescription">Comment décririez-vous votre style en quelques mots ?</label>
+      <textarea id="styleDescription" placeholder="Exemple : élégant, décontracté, vintage, coloré..." required></textarea>
+
+      <!-- Question 2: Confort et bien-être -->
+      <label for="comfort">Quels vêtements vous mettent le plus à l’aise ? (Décrivez vos préférences)</label>
+      <textarea id="comfort" placeholder="Exemple : vêtements amples, matières douces, etc." required></textarea>
+
+      <!-- Question 3: Style inspiré des autres -->
+      <label for="inspiration">Avez-vous une icône de style ou une personne qui vous inspire ?</label>
+      <textarea id="inspiration" placeholder="Exemple : célébrité, influenceur, ami..." required></textarea>
+
+      <!-- Question 4: Matières préférées -->
+      <label for="materials">Préférez-vous des matières spécifiques pour vos vêtements ?</label>
+      <textarea id="materials" placeholder="Exemple : coton, lin, soie, laine, etc." required></textarea>
+
+      <!-- Question 5: Rapport à la mode durable -->
+      <label for="sustainability">Quelle importance accordez-vous à la mode durable et aux vêtements éthiques ?</label>
+      <textarea id="sustainability" placeholder="Exemple : très importante, peu importante, etc." required></textarea>
+
+      <!-- Question 6: Choix des couleurs -->
+      <label for="colors">Quelles sont les couleurs qui dominent dans votre garde-robe ?</label>
+      <textarea id="colors" placeholder="Exemple : noir, blanc, pastel, vif..." required></textarea>
+
+      <!-- Question 7: Objectifs de style -->
+      <label for="styleGoals">Quel est votre objectif principal en matière de style ?</label>
+      <textarea id="styleGoals" placeholder="Exemple : être plus élégant, plus confortable, exprimer ma créativité..." required></textarea>
+
+      <!-- Question 8: Âge -->
+      <label for="age">Quel est votre âge ?</label>
+      <input type="number" id="age" placeholder="Votre âge" required>
+
+      <!-- Question 9: Budget moyen -->
+      <label for="budget">Quel est votre budget moyen par article (en €) ?</label>
+      <input type="number" id="budget" placeholder="Exemple : 50" required>
+
+      <!-- Bouton de soumission -->
+      <button type="submit">Enregistrer mes préférences</button>
+    </form>
+  </div>
+
+  <script>
+    // Vérifie si l'utilisateur a déjà répondu au questionnaire
+    const hasCompletedQuestionnaire = localStorage.getItem("hasCompletedQuestionnaire");
+  
+    if (hasCompletedQuestionnaire) {
+      // Redirige vers la page d'accueil si le questionnaire est déjà rempli
+      alert("Vous avez déjà rempli le questionnaire.");
+      window.location.href = "index.html";
+    }
+  
+    // Lorsque le formulaire est soumis, marquez le questionnaire comme complété
+    document.getElementById("questionnaireForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+  
+      // Enregistre les préférences
+      const preferences = {
+        styleDescription: document.getElementById("styleDescription").value,
+        comfort: document.getElementById("comfort").value,
+        inspiration: document.getElementById("inspiration").value,
+        materials: document.getElementById("materials").value,
+        sustainability: document.getElementById("sustainability").value,
+        colors: document.getElementById("colors").value,
+        styleGoals: document.getElementById("styleGoals").value,
+        age: document.getElementById("age").value,
+        budget: document.getElementById("budget").value
+      };
+  
+      localStorage.setItem("userPreferences", JSON.stringify(preferences));
+  
+      // Marque le questionnaire comme complété
+      localStorage.setItem("hasCompletedQuestionnaire", "true");
+  
+      alert("Préférences enregistrées avec succès !!");
+      window.location.href = "index.html"; // Redirige vers la page d'accueil
+    });
+  </script>
+  
+</body>
+</html>

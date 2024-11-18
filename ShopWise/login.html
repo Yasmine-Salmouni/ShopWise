@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion - ShopWise</title>
+  <style>
+    /* Variables et styles CSS comme précédemment */
+    :root {
+  --primary-color: #3a7ca5; /* Bleu vif pour un aspect moderne */
+  --accent-color: #e85d04; /* Orange chaud pour contraster */
+  --background-color: #f4f4f9; /* Blanc doux pour un fond agréable */
+  --text-color: #2d2d2d; /* Gris foncé pour une bonne lisibilité */
+  --input-border-color: #c7c7c7; /* Gris clair pour les bordures */
+  --input-bg-color: #ffffff; /* Blanc pur pour les champs de formulaire */
+  --input-focus-border: #3a7ca5; /* Même bleu vif que la couleur principale pour le focus */
+  --btn-color: #3a7ca5; /* Couleur des boutons */
+  --btn-hover-color: #e85d04; /* Orange chaud pour le hover des boutons */
+  --link-color: #e85d04; /* Couleur des liens */
+  --font-family: "Poppins", sans-serif;
+}
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--background-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background-color: var(--input-bg-color);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h2 {
+      font-size: 24px;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .login-form label {
+      font-size: 16px;
+      color: var(--text-color);
+      text-align: left;
+    }
+    .login-form input[type="email"],
+    .login-form input[type="password"] {
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid var(--input-border-color);
+      border-radius: 5px;
+      background-color: var(--input-bg-color);
+      transition: border-color 0.3s;
+    }
+    .login-form input:focus {
+      border-color: var(--input-focus-border);
+      outline: none;
+    }
+    .login-form button {
+      padding: 12px;
+      background-color: var(--btn-color);
+      color: var(--input-bg-color);
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .login-form button:hover {
+      background-color: var(--btn-hover-color);
+    }
+    .login-form p {
+      font-size: 14px;
+      margin-top: 15px;
+    }
+    .login-form a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+    .login-form a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Connexion à ShopWise</h2>
+    <form id="loginForm" class="login-form">
+      <label for="email">Email :</label>
+      <input type="email" id="email" placeholder="Votre email" required>
+      
+      <label for="password">Mot de passe :</label>
+      <input type="password" id="password" placeholder="Votre mot de passe" required>
+      
+      <button type="submit">Connexion</button>
+      <p>Pas encore inscrit ? <a href="register.html">Créez un compte</a></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
+      event.preventDefault(); // Empêche le rechargement de la page
+  
+      // Récupère les valeurs des champs email et mot de passe
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+  
+      // Vérification simple (dans une vraie application, vous devriez valider avec un serveur)
+      if (email && password) {
+        // Vérifier si c'est la première connexion
+        const isFirstLogin = localStorage.getItem("isFirstLogin");
+  
+        if (!isFirstLogin) {
+          // Stocke que l'utilisateur s'est connecté une première fois
+          localStorage.setItem("isFirstLogin", "true");
+  
+          // Redirige vers le questionnaire
+          alert("Bienvenue ! Vous allez être redirigé vers le questionnaire de style.");
+          window.location.href = "questionnaire.html";
+        } else {
+          // Redirige vers la page d'accueil
+          alert("Connexion réussie !");
+          window.location.href = "index.html";
+        }
+      } else {
+        alert("Veuillez remplir tous les champs.");
+      }
+    });
+  </script>
+  
+</body>
+</html>
